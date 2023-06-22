@@ -2,14 +2,6 @@ import numpy
 import typing  
 import scipy.linalg
 
-# class gto:
-#   def __init__(self, shell: typing.List[int], exponents: typing.List[float], coefficients: typing.List[float], center: typing.List[float]) -> None:
-#     self.shell          =   numpy.array(shell)
-#     self.exponents      =   numpy.array(exponents)
-#     self.coefficients   =   numpy.array(coefficients)
-#     self.normcoeffs     =   numpy.zeros(self.coefficients.size)
-#     self.center         =   numpy.array(center)
-
 class Molecule:
   def __init__(self, atoms : typing.List[typing.Tuple[str, typing.Tuple[float, float, float]]], charge : int, multiplicity : int, basis: str) -> None:
     self.n_atoms      = len(atoms)
