@@ -1,6 +1,7 @@
-import numpy
-import typing  
-import scipy.linalg
+import  numpy
+import  typing  
+import  scipy.linalg
+from    ..molecule import PeriodicTable
 
 class Molecule:
   def __init__(self, atoms : typing.List[typing.Tuple[str, typing.Tuple[float, float, float]]], charge : int, multiplicity : int, basis: str) -> None:
@@ -14,10 +15,11 @@ class Molecule:
     self.shells       = []
 
   def read_basis(self):
-    atom_names        = [row[0] for row in self.geometry]
-    for atom in atom_names:
-      with open("../basissets/{}-{}".format(atom, self.basis_set)) as basis_object:
+    atomic_numbers     = [PeriodicTable.atom_maps[row[0]] for row in self.geometry]
+    for atom in atomic_numbers:
+      with open("../basissets/{}/{}-{}.txt".format(self.basis_set, self.basis_set, atom)) as basis_object:
         basis_data  = basis_object.readlines()
+        print(basis_data)
         for lnumber, line in enumerate(basis_data[1:]):
           if "S" in line and "P" not in line:
               nprims          =   int(line.split()[1])
