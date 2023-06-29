@@ -14,13 +14,15 @@ class Molecule:
     self.exponents    = []
     self.coefficients = []
     self.shells       = []
+    self.charges      = []
 
   def read_basis(self):
-    atomic_numbers    = [PeriodicTable.atom_maps[row[0]] for row in self.geometry]
+    self.charges      = [PeriodicTable.get_element(row[0]) for row in self.geometry]
     object_path       = os.path.dirname(os.path.dirname(__file__))
-    for atom in atomic_numbers:
+    for atom in self.charges:
       basis_file      = "/basissets/{}/{}-{}.txt".format(self.basis_set, self.basis_set, atom)
       basis_path      = object_path+basis_file
+      print(basis_path)
       with open(basis_path) as basis_object:
         basis_data  = basis_object.readlines()
         for lnumber, line in enumerate(basis_data[1:]):
