@@ -12,4 +12,4 @@ from planck.core.molecule.Molecule import Molecule
 
 hydrogen_mol = Molecule(atoms = [["H", (0.00, 0.00, 0.00)], ["H", (0.73, 0.00, 0.00)]], charge = 0, multiplicity = 1, basis = "sto-3g")
 ```
-This will generate a molecule object with the specified parameters.    
+This will generate a molecule object with the specified parameters. The code currently supports ```sto-3g```, 3-21g and 6-31g basis sets.   
