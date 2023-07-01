@@ -5,7 +5,7 @@ import  os
 from    ..molecule import PeriodicTable
 
 class Molecule:
-  def __init__(self, atoms : typing.List[typing.Tuple[str, typing.Tuple[float, float, float]]], charge : int, multiplicity : int, basis: str) -> None:
+  def __init__(self, atoms : typing.List[typing.Tuple[str, typing.Tuple[float, float, float]]], charge : int, multiplicity : int, basis: str, symmetry = True) -> None:
     self.n_atoms      = len(atoms)
     self.geometry     = atoms
     self.charge       = charge
@@ -15,7 +15,9 @@ class Molecule:
     self.coefficients = []
     self.shells       = []
     self.charges      = []
-
+    self.point_group  = None
+    self.reorient     = None
+    
   def read_basis(self):
     self.charges      = [PeriodicTable.get_element(row[0]) for row in self.geometry]
     object_path       = os.path.dirname(os.path.dirname(__file__))
